@@ -1,0 +1,118 @@
+  body {
+    background-color: #fff;
+    color: #fff;
+    font-family: 'Dosis', Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    margin: 0px;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    margin: 0 auto;
+    max-width: 308px;
+    /*border: 2px solid red;*/
+    color: #34495e;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 3em;
+  }
+  /*GRID LAYOUT*/
+
+  .grid {
+    background-color: #34495e;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+  /*BOARD TILES */
+
+  .tile {
+    width: 90px;
+    height: 90px;
+    border: 6px solid #2c3e50;
+    font-size: 3.5em;
+    font-family: 'Gochi Hand', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tile:hover {
+    background-color: #7f8c8d;
+  }
+  /*.tile:first-of-type {
+  border-left-color: transparent;
+  border-top-color: transparent;
+}*/
+  /*.tile:nth-of-type(2) {
+  border-top-color: transparent;
+}*/
+  /*.tile:nth-of-type(3) {
+  border-right-color: transparent;
+  border-top-color: transparent;
+}*/
+  /*tr:nth-of-type(3) .tile {
+  border-bottom-color: transparent;
+}*/
+  /*GAME STATUS*/
+
+  .game-status {
+    margin: 0px;
+    padding: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #f1c40f;
+    color: #fff;
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+
+  span {
+    text-transform: uppercase;
+  }
+  /*RESTART BUTTON*/
+
+  .reset {
+    background-color: #e74c3c;
+    color: #fff;
+    border: 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-family: 'Dosis', Helvetica, sans-serif;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0px;
+    padding: 15px;
+    width: 100%;
+  }
+
+  .reset:hover {
+    background-color: #c0392b;
+    cursor: pointer;
+  }
+
+  .reset:focus {
+    outline: none;
+  }
+
+  .visible {
+    font-size: 1.3em;
+    color: #2ecc71;
+    margin-top: -20px;
+  }
+
+  .hidden {
+    display: none;
+  }
