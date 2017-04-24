@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+
 
 import './App.css';
 import 'react-notifications/lib/notifications.css';
@@ -7,7 +9,7 @@ import Tile from './Tile'
 // import Announcement from './Announcement'
 import ResetButton from './ResetButton'
 import GameStaus from './GameStaus';
-import Example from './Example'
+// import Example from './Example'
 
 
 class App extends Component {
@@ -25,6 +27,18 @@ class App extends Component {
     }
   }
 
+  createNotification(type) {
+    switch (type) {
+      case 'success':
+        NotificationManager.success(`Player ${this.state.turn} wins`, 'Congratulations', 3000);
+        break;
+      case 'warning':
+        NotificationManager.warning('Play Again', 'Draw', 3000);
+        break;
+    };
+    return
+  }
+
   updateBoard(loc, player) {
 
     if (this.state.gameBoard[loc] === 'x' || this.state.gameBoard[loc] === 'o' || this.state.winner) {
@@ -39,54 +53,64 @@ class App extends Component {
     let topRow = this.state.gameBoard[0] + this.state.gameBoard[1] + this.state.gameBoard[2]
     if (topRow.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let middleRow = this.state.gameBoard[3] + this.state.gameBoard[4] + this.state.gameBoard[5]
     if (middleRow.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let bottomRow = this.state.gameBoard[6] + this.state.gameBoard[7] + this.state.gameBoard[8]
     if (bottomRow.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let leftCol = this.state.gameBoard[0] + this.state.gameBoard[3] + this.state.gameBoard[6]
     if (leftCol.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let midCol = this.state.gameBoard[1] + this.state.gameBoard[4] + this.state.gameBoard[7]
     if (midCol.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let rightCol = this.state.gameBoard[2] + this.state.gameBoard[5] + this.state.gameBoard[8]
     if (rightCol.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let leftDiag = this.state.gameBoard[0] + this.state.gameBoard[4] + this.state.gameBoard[8]
     if (leftDiag.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let rightDiag = this.state.gameBoard[2] + this.state.gameBoard[4] + this.state.gameBoard[6]
     if (rightDiag.match(/xxx|ooo/)) {
       this.setState({ winner: `${this.state.turn} wins` })
+      this.createNotification('success')
       return
     }
 
     let moves = this.state.gameBoard.join('').replace(/ /g, '')
     if (moves.length === 9) {
       this.setState({ winner: 'draw' })
+      this.createNotification('warning')
+      this.resetBoard()
     }
 
     this.setState({ turn: (this.state.turn === 'x') ? 'o' : 'x' })
@@ -108,11 +132,11 @@ class App extends Component {
 
 
   render() {
-    // <Board />
-    // <Announcement winner={this.state.winner} />
+
     return (
       <div className="container">
-        <Example winner={this.state.winner} />
+        <NotificationContainer />
+
         <div className="menu">
           <h1>Tic  Tac  Toe</h1>
         </div>
