@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 class ScoreBoard extends Component {
   render() {
-    // {{ wins.O }}
-    // {{ wins.X }}
     return (
       <div className="score-board">
         <span>O has {this.props.O} wins</span>
