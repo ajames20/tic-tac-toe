@@ -13,7 +13,7 @@
     padding: 0;
   }
 
-  #root {
+  .container {
     margin: 0 auto;
     max-width: 308px;
     /*border: 2px solid red;*/
@@ -112,7 +112,30 @@
     color: #2ecc71;
     margin-top: -20px;
   }
+  /*SCORE BOARD*/
 
-  .hidden {
-    display: none;
+  .score-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 15px;
+    background-color: #16a085;
+    box-shadow: 10px solid #fff;
+    padding: 20px;
+    overflow-x: none;
+  }
+
+  .score-board h2 {
+    margin: 0px;
+  }
+
+  .score-board span {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .score-board span:last-of-type {
+    margin-right: 1.5em;
   }
