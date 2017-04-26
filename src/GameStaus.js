@@ -4,9 +4,8 @@ class GameStatus extends Component {
   render() {
     return (
       <div className="game-status">
-        <p>
-          <span>{`${this.props.player}`}</span>
-          's turn
+        <p>Games Played
+          <span> {`${this.props.match}`}</span>
         </p>
       </div>
     );

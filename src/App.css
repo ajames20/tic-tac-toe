@@ -31,13 +31,7 @@
     text-transform: uppercase;
     font-weight: bold;
     font-size: 3em;
-    margin-top: -2px;
-  }
-
-  h3 {
-    margin-top: -16px;
-    /*border: 1px solid red;*/
-    padding: 0;
+    margin-bottom: 15px;
   }
   /*GRID LAYOUT*/
 

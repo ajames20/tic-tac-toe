@@ -34,7 +34,6 @@ class App extends Component {
   }
 
 
-
   resetBoard() {
     this.setState({
       gameBoard: [
@@ -47,8 +46,8 @@ class App extends Component {
       maxPlayer: 'x',
       minPlayer: 'o'
     })
-
   }
+
   createNotification(type) {
     let winner = this.state.winner
     switch (type) {
@@ -65,14 +64,6 @@ class App extends Component {
     return
   }
 
-  tie(board) {
-    let moves = board.join('').replace(/ /g, '')
-    if (moves.length === 9) {
-      return true
-    }
-
-    return false
-  }
 
   winner(board, player) {
     if (
@@ -91,11 +82,20 @@ class App extends Component {
     }
   }
 
+  tie(board) {
+    let moves = board.join('').replace(/ /g, '')
+    if (moves.length === 9) {
+      return true
+    }
+    return false
+  }
+
   copyBoard(board) {
     return board.slice(0)
   }
 
   validMove(move, player, board) {
+
     let newBoard = this.copyBoard(board)
     if (newBoard[move] === ' ') {
       newBoard[move] = player
@@ -104,6 +104,7 @@ class App extends Component {
       return null
     }
   }
+
 
   findAiMove(board) {
     let bestMoveScore = 100
@@ -169,6 +170,8 @@ class App extends Component {
     }
   }
 
+
+
   gameLoop(move) {
     let player = this.state.turn
     let currentGameBoard = this.validMove(move, player, this.state.gameBoard)
@@ -178,14 +181,9 @@ class App extends Component {
         gameBoard: currentGameBoard,
         winner: player
       })
-      if (player === 'o') {
-        this.state.wins.O++
-      }
 
-      if (player === 'x') {
-        this.state.wins.X++
-      }
       this.state.match++
+      this.state.wins.X++
       this.state.winner = player
       this.createNotification('success')
       return
@@ -196,8 +194,8 @@ class App extends Component {
         gameBoard: currentGameBoard,
         winner: 'd'
       })
-      this.createNotification('warning')
       this.state.match++
+      this.createNotification('warning')
       return
     }
 
@@ -205,18 +203,13 @@ class App extends Component {
     currentGameBoard = this.validMove(this.findAiMove(currentGameBoard), player, currentGameBoard)
 
     if (this.winner(currentGameBoard, player)) {
+
       this.setState({
         gameBoard: currentGameBoard,
         winner: player
       })
-      if (player === 'o') {
-        this.state.wins.O++
-      }
-
-      if (player === 'x') {
-        this.state.wins.X++
-      }
       this.state.match++
+      this.state.wins.O++
       this.state.winner = player
       this.createNotification('success')
       return
@@ -225,32 +218,31 @@ class App extends Component {
     if (this.tie(currentGameBoard)) {
       this.setState({
         gameBoard: currentGameBoard,
-        winner: 'd'
+        winner: 'd',
       })
-      this.state.winner = 'd'
-      this.createNotification('warning')
       this.state.match++
+      this.createNotification('warning')
       return
     }
 
     this.setState({
-      gameBoard: currentGameBoard
+      gameBoard: currentGameBoard,
     })
+
   }
 
   render() {
     return (
-      <div className="">
+      <div>
         <ScoreBoard X={this.state.wins.X} O={this.state.wins.O} />
         <div className="container">
           <NotificationContainer />
 
           <div className="menu">
             <h1>Tic  Tac  Toe</h1>
-            <h3>Games Played {this.state.match}</h3>
           </div>
 
-          <GameStaus player={this.state.turn} />
+          <GameStaus match={this.state.match} />
 
           <div className="grid">
             {this.state.gameBoard.map((value, i) => {
